@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reto Emprendedor: ecuaciones e inecuaciones cuadráticas</title>
+<style>
+:root{--bg1:#fff1c9;--bg2:#cfeeff;--card:#ffffff;--tx:#1b1f3b;--mut:#565b85;--pri:#6c3cf0;--ok:#0f9f68;--bad:#e5484d;--acc:#ffb100;--line:#dfe3f6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#1c1350;--bg2:#08303f;--card:#251e55;--tx:#f3f0ff;--mut:#bcb8e4;--pri:#a58bff;--line:#3b3380}}
+:root[data-theme="dark"]{--bg1:#1c1350;--bg2:#08303f;--card:#251e55;--tx:#f3f0ff;--mut:#bcb8e4;--pri:#a58bff;--line:#3b3380}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;background:var(--bg1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='180'%3E%3Cpath d='M10 170Q130-70 250 170' fill='none' stroke='rgba(108,60,240,.18)' stroke-width='3'/%3E%3Ctext x='24' y='46' font-size='30' fill='rgba(255,140,0,.3)' font-family='Georgia'%3Ex²%3C/text%3E%3Ctext x='190' y='60' font-size='30' fill='rgba(0,170,140,.3)' font-family='Georgia'%3EΔ%3C/text%3E%3Ctext x='120' y='160' font-size='28' fill='rgba(229,72,77,.25)' font-family='Georgia'%3E√%3C/text%3E%3C/svg%3E");background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));opacity:.78;z-index:-1}
+main{max-width:860px;margin:0 auto;padding:18px 14px 60px}
+header{background:linear-gradient(120deg,#6c3cf0,#ff4f8b 60%,#ffb100);color:#fff;border-radius:20px;padding:20px 22px;margin-bottom:16px;box-shadow:0 8px 24px rgba(108,60,240,.3)}
+h1{margin:0;font-size:clamp(22px,5vw,32px);line-height:1.15}
+header p{margin:6px 0 12px;opacity:.95}
+.bar{height:12px;background:rgba(255,255,255,.35);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:#fff;border-radius:9px;transition:width .5s}
+.sc{display:flex;justify-content:space-between;font-weight:700;margin-top:8px}
+nav{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+nav button{flex:1;min-width:120px;padding:12px;border:2px solid var(--pri);background:var(--card);color:var(--tx);border-radius:14px;font:inherit;font-weight:700;cursor:pointer}
+nav button.on{background:var(--pri);color:#fff}
+.card{background:var(--card);border-radius:18px;padding:18px 20px;margin-bottom:14px;border-left:8px solid var(--acc);box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.step h3{margin:0 0 8px;color:var(--pri);font-size:19px}
+.f{display:inline-block;background:linear-gradient(120deg,#6c3cf0,#ff4f8b);color:#fff;border-radius:12px;padding:8px 16px;font-size:clamp(18px,4.5vw,26px);font-weight:800;margin:6px 0}
+.hint{color:var(--mut);font-size:14px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:8px 0}
+th,td{padding:8px 6px;border-bottom:2px solid var(--line);text-align:center}
+th{color:var(--pri);font-size:14px}
+.in{font:inherit;padding:7px 8px;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--tx);width:100%;max-width:170px}
+input.in{max-width:96px;text-align:center}
+.q{margin:10px 0;padding:6px;border-radius:12px}
+.qt{margin:0 0 6px;font-weight:700}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--tx);font:inherit;cursor:pointer}
+.opt.sel{border-color:var(--pri);background:rgba(108,60,240,.14)}
+.good{outline:3px solid var(--ok);outline-offset:1px;border-radius:10px}
+.bad{outline:3px solid var(--bad);outline-offset:1px;border-radius:10px}
+.btn{margin-top:10px;padding:11px 22px;border:0;border-radius:14px;background:var(--ok);color:#fff;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.btn:disabled{opacity:.45;cursor:default}
+.msg{margin:8px 0 0;font-weight:700}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad);outline:0}.msg.warn{color:#c47a00}
+.sol{font-weight:400;color:var(--tx);background:rgba(15,159,104,.12);border-radius:12px;padding:10px 12px;margin-top:8px;font-size:15px}
+svg{width:100%;height:auto;max-width:460px;display:block;margin:8px auto}
+.end{text-align:center;font-size:20px;border-left-color:var(--ok)}
+.end .btn{background:var(--pri)}
+</style></head><body><main>
+<header><h1>📈 Reto Emprendedor</h1><p>Ayuda a tres emprendedores a decidir con ecuaciones e inecuaciones cuadráticas. Cada caso tiene 4 pasos y cada paso suma puntos.</p>
+<div class="bar"><i id="pb"></i></div><div class="sc"><span id="st">Paso 0 de 12</span><span id="pt">⭐ 0 puntos</span></div></header>
+<nav id="nav"></nav><div id="exs"></div><div id="end"></div>
+<script>
+const EX=[
+{e:"🍦",t:"Heladería Dulce Mía",u:"congeladores",b:10,c:21,xs:[2,3,5,7,9],ctx:"La dueña de “Dulce Mía” quiere decidir cuántos congeladores conviene mantener encendidos. Su contador le entrega la fórmula del balance neto mensual según el número de congeladores activos:"},
+{e:"🛵",t:"TiendaVerde",u:"repartidores",b:14,c:40,xs:[2,4,7,10,12],ctx:"La CEO de “TiendaVerde”, una tienda en línea de productos ecológicos, quiere decidir cuántos repartidores contratar. Su equipo estima el balance neto mensual según el número de repartidores activos:"}];
+const TOT=EX.length*4,S={pts:0,steps:0,done:0};
+const h=(t,a={},...k)=>{const e=document.createElement(t);for(const[n,v]of Object.entries(a)){if(n==='class')e.className=v;else if(n.startsWith('on'))e[n]=v;else e.setAttribute(n,v)}k.flat().forEach(x=>e.append(x));return e};
+const cap=s=>s[0].toUpperCase()+s.slice(1),P=(b,c)=>`x² − ${b}x + ${c}`;
+const inp=()=>h('input',{type:'text',inputmode:'numeric',class:'in','aria-label':'respuesta'});
+const val=i=>{const t=i.value.trim().replace('−','-').replace(',','.');return t===''?NaN:Number(t)};
+const sel=o=>h('select',{class:'in'},...['—',...o].map(x=>h('option',{value:x},x)));
+const lab=v=>v<0?'Sí':v===0?'No (equilibrio)':'No';
+function mc(q,opts,ok){const ord=opts.map((o,i)=>i).sort(()=>Math.random()-.5);let s=-1;const box=h('div',{class:'q'},h('p',{class:'qt'},q));const bs=ord.map(i=>h('button',{class:'opt',type:'button',onclick(){s=i;bs.forEach(b=>b.classList.remove('sel'));this.classList.add('sel')}},opts[i]));box.append(...bs);return{node:box,chk:()=>({e:box,ok:s===ok,has:s>=0})}}
+function upd(){$('#pb').style.width=100*S.steps/TOT+'%';$('#st').textContent=`Paso ${S.steps} de ${TOT}`;$('#pt').textContent=`⭐ ${S.pts} puntos`}
+const $=s=>document.querySelector(s);
+function mkStep(title,nodes,get,expl,next){const msg=h('p',{class:'msg'}),btn=h('button',{class:'btn',type:'button'},'Comprobar ✔');let tries=0;
+const card=h('section',{class:'card step'},h('h3',{},title),...nodes,btn,msg);
+btn.onclick=()=>{const cs=get();if(cs.some(c=>!c.has)){msg.className='msg warn';msg.textContent='Completa todas las respuestas antes de comprobar.';return}
+tries++;let all=true;cs.forEach(c=>{c.e.classList.toggle('good',c.ok);c.e.classList.toggle('bad',!c.ok);if(!c.ok)all=false});
+if(all){btn.disabled=true;const p=tries===1?10:5;S.pts+=p;S.steps++;upd();msg.className='msg ok';msg.innerHTML=`🎉 ¡Correcto! +${p} puntos<div class="sol">${expl}</div>`;next()}
+else{msg.className='msg bad';msg.textContent='Casi. Revisa lo marcado en rojo e inténtalo otra vez.'}};
+card.hidden=true;return card}
+function model(x){const{b,c}=x,B=v=>v*v-b*b/b*v+c;const f=v=>v*v-b*v+c,d=b*b-4*c,r1=(b-Math.sqrt(d))/2,r2=(b+Math.sqrt(d))/2,v=b/2,ints=[];for(let i=r1+1;i<r2;i++)ints.push(i);return{f,r1,r2,v,Bv:f(v),ints}}
+function graph(x,m){const{b,c}=x,W=420,H=250,px=t=>30+t*(W-60)/b,ymax=c,ymin=m.Bv,py=y=>20+(ymax-y)*(H-60)/(ymax-ymin);let d='';for(let i=0;i<=60;i++){const t=b*i/60;d+=(i?'L':'M')+px(t).toFixed(1)+' '+py(m.f(t)).toFixed(1)}
+return`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Gráfica de B(x)"><line x1="20" x2="${W-10}" y1="${py(0)}" y2="${py(0)}" stroke="currentColor" opacity=".5"/><path d="${d}" fill="none" stroke="var(--pri)" stroke-width="4"/><line x1="${px(m.r1)}" x2="${px(m.r2)}" y1="${py(0)}" y2="${py(0)}" stroke="var(--ok)" stroke-width="8" stroke-linecap="round"/>`+[m.r1,m.r2].map(t=>`<circle cx="${px(t)}" cy="${py(0)}" r="6" fill="var(--acc)"/><text x="${px(t)}" y="${py(0)-12}" text-anchor="middle" fill="currentColor" font-size="14">${t}</text>`).join('')+`<circle cx="${px(m.v)}" cy="${py(m.Bv)}" r="6" fill="var(--bad)"/><text x="${px(m.v)}" y="${py(m.Bv)+20}" text-anchor="middle" fill="currentColor" font-size="14">(${m.v}, ${m.Bv})</text></svg>`}
+function build(x,k){const m=model(x),{f,r1,r2,v,Bv,ints}=m,{b,c,u}=x,wrap=h('div',{class:'ex'});wrap.hidden=k>0;
+wrap.append(h('section',{class:'card'},h('h2',{style:'margin:0 0 6px'},`${x.e} ${x.t}`),h('p',{style:'margin:0'},x.ctx),h('div',{class:'f'},`B(x) = ${P(b,c)}`),h('p',{class:'hint',style:'margin:0'},'En millones de pesos. Si B(x) es negativo, los ingresos superan los costos (zona eficiente); si es positivo, los costos superan los ingresos.')));
+const rows=x.xs.map(t=>({t,i:inp(),s:sel(['Sí','No','No (equilibrio)'])}));
+const tb=h('div',{class:'scroll'},h('table',{},h('tr',{},h('th',{},`${cap(u)} activos (x)`),h('th',{},'B(x) en millones $'),h('th',{},'¿Ingresos superan costos?')),...rows.map(r=>h('tr',{},h('td',{},String(r.t)),h('td',{},r.i),h('td',{},r.s)))));
+const q1=mc('¿En qué valores de x los ingresos superan los costos (B(x) < 0)?',[`Entre x = ${r1} y x = ${r2}`,`Cuando x < ${r1} o x > ${r2}`,`Cuando x > ${r2}`],0);
+const q2=mc('¿Para qué se necesitan la ecuación y la inecuación cuadrática?',['La ecuación halla los puntos exactos donde B(x) = 0; la inecuación halla el intervalo donde B(x) < 0','La ecuación halla el intervalo y la inecuación halla las raíces','Solo hace falta la ecuación; la inecuación no aporta nada'],0);
+const a=inp(),a2=inp(),iv=[[`x < ${r1}`,'No'],[`${r1} < x < ${r2}`,'Sí'],[`x > ${r2}`,'No']].map(([l,o])=>({l,o,s:sel(['Sí','No'])}));
+const q3=mc('¿Cuál es la solución de B(x) < 0 y qué valores enteros de x sirven?',[`${r1} < x < ${r2}, es decir x = ${ints.join(', ')}`,`x < ${r1} o x > ${r2}`,`${r1} ≤ x ≤ ${r2}, es decir x = ${[r1,...ints,r2].join(', ')}`],0);
+const xv=inp(),bv=inp(),q4=mc(`¿Con cuántos ${u} conviene operar para la máxima eficiencia?`,[`${v} ${u}`,`${r1} ${u}`,`${r2} ${u}`],0),gr=h('div');
+const s=[];const show=i=>()=>{if(s[i+1]){s[i+1].hidden=false;s[i+1].scrollIntoView({behavior:'smooth',block:'start'})}else fin()};
+s[0]=mkStep('1. Identificar los datos',[h('p',{},'Sustituye cada valor de x en B(x) y decide si los ingresos superan los costos.'),tb],()=>rows.flatMap(r=>[{e:r.i,ok:val(r.i)===f(r.t),has:!isNaN(val(r.i))},{e:r.s,ok:r.s.value===lab(f(r.t)),has:r.s.value!=='—'}]),x.xs.map(t=>`<div>(${t})² − ${b}(${t}) + ${c} = ${t*t} − ${b*t} + ${c} = <b>${f(t)}</b> → ${lab(f(t))}</div>`).join(''),show(0));
+s[1]=mkStep('2. Analizar: rango de eficiencia',[q1.node,q2.node],()=>[q1.chk(),q2.chk()],`Los ingresos superan los costos cuando B(x) < 0, entre x = ${r1} y x = ${r2} sin incluirlos. La <b>ecuación</b> da las raíces exactas y la <b>inecuación</b> da el intervalo completo.`,show(1));
+s[2]=mkStep('3. Ejecutar: ecuación e inecuación',[h('p',{},`Resuelve ${P(b,c)} = 0 factorizando. Busca dos números que multiplicados den ${c} y sumados den −${b}.`),h('p',{},'x₁ = ',a,'  x₂ = ',a2),h('p',{},`Análisis de signos de (x − ${r1})(x − ${r2}): ¿en qué intervalos B(x) < 0?`),h('div',{class:'scroll'},h('table',{},...iv.map(r=>h('tr',{},h('td',{},r.l),h('td',{},r.s))))),q3.node],
+()=>{const A=val(a),B2=val(a2),ok=[A,B2].sort((p,q)=>p-q).join()===[r1,r2].join();return[{e:a,ok,has:!isNaN(A)},{e:a2,ok,has:!isNaN(B2)},...iv.map(r=>({e:r.s,ok:r.s.value===r.o,has:r.s.value!=='—'})),q3.chk()]},
+`Factorizando: (−${r1})(−${r2}) = ${c} y (−${r1}) + (−${r2}) = −${b}, así (x − ${r1})(x − ${r2}) = 0 y x₁ = ${r1}, x₂ = ${r2}. El producto es negativo solo entre las raíces: <b>${r1} < x < ${r2}</b>.`,show(2));
+s[3]=mkStep('4. Verificar e interpretar',[h('p',{},`El vértice de la parábola está en x = b/2 = ${b}/2. Calcula x y B(x) en el vértice.`),h('p',{},'x del vértice = ',xv,'  B(vértice) = ',bv),q4.node,gr],()=>[{e:xv,ok:val(xv)===v,has:!isNaN(val(xv))},{e:bv,ok:val(bv)===Bv,has:!isNaN(val(bv))},q4.chk()],
+`El vértice está en x = ${v}, donde B(${v}) = ${Bv} millones: máxima eficiencia. Verificación en GeoGebra: ResoluciónN(${P(b,c)} = 0) → x = ${r1}, x = ${r2} ✓ · Resuelve(${P(b,c)} < 0, x) → ${r1} < x < ${r2} ✓`,show(3));
+gr.innerHTML=graph(x,m);
+wrap.append(...s);wrap.fin=()=>{S.done++;$('#nav').children[k].textContent+=' ✅';if(S.done===EX.length)end();else $('#nav').children[(k+1)%EX.length].click()};
+function fin(){wrap.fin()}return{wrap,first:s[0]}}
+function end(){$('#end').append(h('section',{class:'card end'},h('p',{},`🏆 ¡Reto completado! Obtuviste ${S.pts} de ${TOT*10} puntos.`),h('button',{class:'btn',type:'button',onclick:()=>location.reload()},'Jugar de nuevo')))}
+EX.forEach((x,k)=>{const{wrap,first}=build(x,k);first.hidden=false;$('#exs').append(wrap);
+const bt=h('button',{type:'button',onclick(){[...$('#nav').children].forEach(c=>c.classList.remove('on'));bt.classList.add('on');[...$('#exs').children].forEach((w,i)=>w.hidden=i!==k)}},`${x.e} Caso ${k+1}`);if(k===0)bt.classList.add('on');$('#nav').append(bt)});
+upd();
+</script></main></body></html>
